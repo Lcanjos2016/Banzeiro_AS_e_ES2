@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Banzeiro - Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(180deg, #3C86C8, #04557B);
+            height: 100vh;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .card-main {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(5px);
+        }
+
+        .card-mini {
+            background: rgba(255, 255, 255, 0.10);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+            backdrop-filter: blur(4px);
+        }
+
+        .icon {
+            font-size: 35px;
+        }
+
+        .divider {
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body class="p-4">
+
+    <div class="container">
+
+        <!-- Bloco principal -->
+        <div class="card-main mb-4">
+            <div class="d-flex justify-content-between">
+                <h3 id="city">Itacoatiara</h3>
+                <span class="icon">📍</span>
+            </div>
+
+            <h1 id="temp">30°</h1>
+            <h4 id="condition">Nublado</h4>
+
+            <div class="d-flex justify-content-between mt-3">
+                <span id="maxmin">Max 38° Min 28°</span>
+                <span class="icon">🌧️</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Dados Climáticos -->
+            <div class="col-md-6">
+                <div class="card-mini">
+
+                    <div class="d-flex justify-content-between">
+                        <span>🌦️ Probabilidade de Chuva</span>
+                        <strong id="rain">30%</strong>
+                    </div>
+                    <div class="divider"></div>
+
+                    <div class="d-flex justify-content-between">
+                        <span>💧 Umidade</span>
+                        <strong id="humidity">15%</strong>
+                    </div>
+                    <div class="divider"></div>
+
+                    <div class="d-flex justify-content-between">
+                        <span>🌬️ Vento</span>
+                        <strong id="wind">8 Km/h</strong>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Atualização do Rio -->
+            <div class="col-md-6">
+                <div class="card-mini">
+
+                    <h5 class="mb-3">Atualizações Nível do Rio</h5>
+
+                    <div id="river-level-list">
+                        <!-- Dados serão carregados dinamicamente -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Requisição ao backend Python
+        fetch("/api/data")
+        .then(res => res.json())
+        .then(data => {
+
+            document.getElementById("city").textContent = data.city;
+            document.getElementById("temp").textContent = data.temp + "°";
+            document.getElementById("condition").textContent = data.condition;
+            document.getElementById("maxmin").textContent = "Max " + data.max + "° Min " + data.min + "°";
+            document.getElementById("rain").textContent = data.rain + "%";
+            document.getElementById("humidity").textContent = data.humidity + "%";
+            document.getElementById("wind").textContent = data.wind + " Km/h";
+
+            let riverDiv = document.getElementById("river-level-list");
+            riverDiv.innerHTML = "";
+
+            data.river_levels.forEach(item => {
+                riverDiv.innerHTML += `
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>${item.date}</span>
+                        <strong>🌊 ${item.level} m</strong>
+                    </div>
+                `;
+            });
+        });
+    </script>
+
+</body>
+</html>
