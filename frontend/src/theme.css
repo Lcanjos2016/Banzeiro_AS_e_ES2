@@ -1,0 +1,114 @@
+:root {
+  --primary: #0d6efd;
+  --primary-dark: #0a58ca;
+  --secondary: #6c757d;
+  --bg: #f1f5f9;
+  --text: #1e293b;
+  --card-bg: #ffffff;
+  --radius: 14px;
+  --shadow: 0 4px 14px rgba(0,0,0,0.08);
+  --transition: 0.2s ease-in-out;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+}
+
+h1, h2, h3 {
+  margin: 0 0 15px;
+  font-weight: 600;
+}
+
+/* LAYOUT GERAL ------------------------------------------------ */
+
+.page-container {
+  padding: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* CARDS -------------------------------------------------------- */
+
+.card {
+  background: var(--card-bg);
+  padding: 22px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 25px;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* BOTÕES -------------------------------------------------------- */
+
+.btn {
+  background: var(--primary);
+  border: none;
+  padding: 12px 18px;
+  color: #fff;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
+/* GRID ---------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+/* INPUTS -------------------------------------------------------- */
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid #d1d5db;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+input:focus {
+  border-color: var(--primary);
+  outline: 2px solid rgba(13, 110, 253, 0.2);
+}
+
+/* NAV ----------------------------------------------------------- */
+
+.header {
+  width: 100%;
+  background: var(--primary);
+  padding: 15px 30px;
+  color: #fff;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.link {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
