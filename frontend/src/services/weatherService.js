@@ -1,9 +1,9 @@
-const API_KEY = "SUA_API_KEY_OPENWEATHER";
+const API_KEY = "83827ec885406a3b4a68f146a5235417";
 
 // CLIMA ATUAL -------------------------------------------------------
 export async function getWeatherNow(city){
   try {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=pt_br&appid=${API_KEY}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=-3.14&lon=-58.45&appid=83827ec885406a3b4a68f146a5235417&units=metric&lang=pt_br`;
     const res = await fetch(url);
     const data = await res.json();
 
