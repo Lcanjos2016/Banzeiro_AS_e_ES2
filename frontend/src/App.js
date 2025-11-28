@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
-import UserDashboard from "./components/UserDashboard";
+import UserDashboard from "./components/Dashboard";
 import WeatherFull from "./components/WeatherFull";
 import History5Days from "./components/History5Days";
 import RiverLevel from "./components/RiverLevel";
