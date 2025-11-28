@@ -6,28 +6,49 @@ import { getRiverLevels } from "../services/riverService";
 export default function Dashboard() {
   const [weather, setWeather] = useState(null);
   const [riverLevels, setRiverLevels] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  async function loadData() {
+  async function loadWeather() {
     const w = await getWeather();
-    const r = await getRiverLevels();
     setWeather(w);
-    setRiverLevels(r.slice(0, 4)); // mostra 4 registros igual ao modelo
   }
 
-  if (!weather) return <h2>Carregando...</h2>;
+  async function loadRiver() {
+    const r = await getRiverLevels();
+    setRiverLevels(r.slice(0, 4));
+  }
+
+  useEffect(() => {
+    async function loadAll() {
+      setLoading(true);
+
+      // 🚀 Carrega tudo em paralelo
+      await Promise.all([loadWeather(), loadRiver()]);
+
+      setLoading(false);
+    }
+
+    loadAll();
+  }, []);
+
+  // 🔥 Tela de carregamento moderna
+  if (loading) {
+    return (
+      <div className="loadingScreen">
+        <div className="spinner"></div>
+        <p>Carregando dados do Banzeiro...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="dash-page">
 
-      {/* CARD PRINCIPAL DO CLIMA */}
+      {/* DASHBOARD PRINCIPAL */}
       <div className="weather-card">
-
         <div className="weather-top">
           <h2 className="weather-city">{weather.city}</h2>
+
           <img
             className="weather-icon"
             src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
@@ -46,9 +67,8 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* CARD INFERIOR (CHUVA / UMIDADE / VENTO) */}
+      {/* 3 CARDS DE CHUVA / UMIDADE / VENTO */}
       <div className="info-row">
-
         <div className="info-card">
           <span className="info-title">🌧 Probabilidade de Chuva</span>
           <span className="info-value">{weather.rain}%</span>
@@ -63,10 +83,9 @@ export default function Dashboard() {
           <span className="info-title">💨 Vento</span>
           <span className="info-value">{weather.wind} km/h</span>
         </div>
-
       </div>
 
-      {/* CARD DE NÍVEL DO RIO */}
+      {/* CARD DO RIO */}
       <div className="river-card">
         <h3 className="river-title">Atualizações Nível do Rio</h3>
 
