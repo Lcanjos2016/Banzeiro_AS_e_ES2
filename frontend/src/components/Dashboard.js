@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import "../dashboard.css";
 import { getWeather } from "../services/weatherService";
 import { getRiverLevels } from "../services/riverService";
+import TopBar from "../components/TopBar";
+import { auth } from "../firebase";
+
 
 export default function Dashboard() {
+  const user = auth.currentUser;
   const [weather, setWeather] = useState(null);
   const [riverLevels, setRiverLevels] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -39,7 +43,7 @@ export default function Dashboard() {
 
   return (
     <div className="dash-page">
-
+    <TopBar user={user} />
       {/* CARD CLIMA */}
       <div className="weather-card">
         <div className="weather-top">
