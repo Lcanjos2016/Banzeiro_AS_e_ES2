@@ -1,0 +1,14 @@
+[33mcommit 90e6ba31e1a5bbdb82b9f4b1b2ae24af6ddab727[m
+Merge: e0685c9f d04b654e
+Author:     MArcos31234 <marcosthuglife93@gmail.com>
+AuthorDate: Sun Nov 15 14:25:32 2026 -0400
+Commit:     GitHub <noreply@github.com>
+CommitDate: Sun Nov 15 14:25:32 2026 -0400
+
+    Merge pull request #5 from Lcanjos2016/develop
+    
+    Develop
+
+ Release.md | 1 [32m+[m
+ feature.md | 1 [32m+[m
+ 2 files changed, 2 insertions(+)
