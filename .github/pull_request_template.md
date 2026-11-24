@@ -4,7 +4,7 @@ Avalia o **cumprimento das práticas de DevOps e controle de versão**.
 - [ ] Commits seguem padrão definido  
 - [ ] Pull Request revisado por pelo menos 1 membro  
 - [ ] Pipeline de build/test executado com sucesso (quando aplicável)    
-- [ ] Documentação/descrição do PR clara  
+- [ ] Documentação/descrição do PR clara   
 
 ---
 
